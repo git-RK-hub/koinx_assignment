@@ -1,0 +1,63 @@
+.dashboard-carousel-inner {
+  display: flex;
+  transition: all 0.2s ease-in;
+}
+
+.dashboard-carousel {
+  position: relative;
+  overflow-x: hidden;
+
+  &__item {
+    flex: 0 0 100%;
+    display: grid;
+    gap: 0.1rem;
+    margin: 1rem 4rem 1rem 0;
+    background-color: white;
+    box-shadow: 0 0 2rem 1rem #d0d6e34d;
+    border-radius: 0.5rem;
+    max-width: 20rem;
+    grid-template-areas:
+      'img heading heading'
+      'img subheading subheading'
+    ;
+  }
+
+  &__item-img {
+    grid-area: img;
+    width: 100px;
+    height: 100px;
+  }
+
+  &__item-heading {
+    grid-area: heading;
+    align-self: center;
+    margin-left: 0.5rem;
+  }
+
+  &__item-subheading{
+    grid-area: subheading;
+    margin-left: 0.5rem;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: #A8B0C1;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+  }
+}
