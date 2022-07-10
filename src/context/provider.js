@@ -11,7 +11,7 @@ export function APIContextProvider({ children }) {
   useEffect(() => {
     async function fetchData() {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap%20_desc&sparkline=false&price_change_percentage=24h%2C%207d`
       );
       setData(data);
     }
