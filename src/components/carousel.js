@@ -4,7 +4,7 @@ const Carousel = ({ children }) => {
   const childrenCount = React.Children.count(children);
   const [childrenOnDisplay, setChildrenOnDisplay] = useState(3);
   const [hiddenChildren, setHiddenChildren] = useState(childrenCount - childrenOnDisplay);
-  const [transformX, setTransformX] = useState(1);
+  const [transformX, setTransformX] = useState(0);
 
   const handlePrevClick = () => {
     const perChildrenWidth = Math.round(100 / 3);
@@ -21,7 +21,7 @@ const Carousel = ({ children }) => {
 
   const handleNextClick = () => {
     const perChildrenWidth = Math.round(100 / 3);
-    const maxTransformX = (hiddenChildren -1) * perChildrenWidth;
+    const maxTransformX = hiddenChildren * perChildrenWidth;
     const nextTransformX = transformX + perChildrenWidth;
 
     if(nextTransformX > maxTransformX) {
@@ -33,7 +33,6 @@ const Carousel = ({ children }) => {
   };
 
   return (
-    <>
     <div className="dashboard-carousel">
       <div className="dashboard-carousel-inner" style={{transform: `translate(-${transformX}%)`}}>
         {children}
@@ -51,7 +50,6 @@ const Carousel = ({ children }) => {
         &gt;
       </button>
     </div>
-    </>
   );
 }
  
