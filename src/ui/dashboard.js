@@ -8,8 +8,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
         <CarouselUi />
-        {/*  */}
-        <h2>Top 100 Cryptocurrencies by Market Cap</h2>
+        <div className='dashboard-heading'>Top 100 Cryptocurrencies by Market Cap</div>
         <TagsUi />
         <TableUi />
     </div>

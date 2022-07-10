@@ -33,31 +33,35 @@
 }
 
 .justify-c {
-  justify-content: center;
+  justify-content: center !important;;
+}
+
+.justify-start {
+  justify-content: flex-start !important;
 }
 
 .justify-sa {
-  justify-content: space-around;
+  justify-content: space-around !important;;
 }
 
 .justify-sb {
-  justify-content: space-between;
+  justify-content: space-between !important;;
 }
 
 .justify-end {
-  justify-content: flex-end;
+  justify-content: flex-end !important;;
 }
 
 .align-c {
-  align-items: center;
+  align-items: center !important;;
 }
 
 .align-sa {
-  align-items: space-around;
+  align-items: space-around !important;;
 }
 
 .align-sb {
-  align-items: space-between;
+  align-items: space-between !important;;
 }
 
 .dead-text {
