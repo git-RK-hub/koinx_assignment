@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Tag from './tag';
+import Tag from '../components/tag';
 import Star from '../assets/images/star.png';
 
-const Tags = () => {
+const TagsUi = () => {
   return (
     <div className='dashboard-tags'>
       <Tag name="Favourites" icon={Star} />
@@ -14,4 +14,4 @@ const Tags = () => {
   );
 }
 
-export default Tags;
+export default TagsUi;
