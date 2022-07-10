@@ -100,17 +100,18 @@ const TableUi = () => {
     },
   ], []);
   
+  // columns to display on mobile view
   const mobileTableColumn = useMemo(() => [
     {
       name: 'NAME',
       headerIcon: '',
       value: (row) => (
         row && (
-          <div>
-            <img src={row.image} alt={row.symbol} />
-            <strong>{row.name}</strong>
-            <strong>{row.symbol}</strong>
-          </div>
+          <>
+            <img className="dashboard-table__column-image" src={row.image} alt={row.symbol} />
+            <div className="m-5">{row.name}</div>
+            <div className="dead-text all-caps">{row.symbol}</div>
+          </>
         )
       ),
     },
@@ -118,14 +119,21 @@ const TableUi = () => {
       name: 'PRICE',
       headerIcon: '',
       value: (row) => (
-        row && <strong>{row.current_price}</strong>
+        row && inDollar(row.current_price)
       )
     },
     {
       name: '24H',
       headerIcon: DownArrow,
       value: (row) => (
-        row && <strong>{row.ath_change_percentage}</strong>
+        row && (
+          <>
+            <img className="m-5" src={row.ath_change_percentage > 0 ? CaretUp : CaretDown} alt="icon"/>
+            <div className={`bold ${row.ath_change_percentage > 0 ? 'success' : 'danger'}`}>
+              {inPercentage(row.ath_change_percentage)}
+            </div>
+          </>
+        )
       ),
     },
   ], []);

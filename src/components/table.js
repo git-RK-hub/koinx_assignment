@@ -9,9 +9,9 @@ const Table = ({desktopColumns, mobileColumns}) => {
     <div className='dashboard-table'>
       <div className='dashboard-table__header'>
         <div className='dashboard-table__row'>
-          {desktopColumns.map(column => {
+          {desktopColumns.map((column, idx) => {
             return (
-              <div className='dashboard-table__column'>
+              <div className='dashboard-table__column' key={idx}>
                 <div className="row align-c justify-end">
                   {column.name}
                   {column.headerIcon && <img className="m-5" src={column.headerIcon} alt="down-arrow" />}
@@ -27,7 +27,7 @@ const Table = ({desktopColumns, mobileColumns}) => {
             <div key={row.id} className="dashboard-table__row">
               {desktopColumns.map((column) => {      
                 return (
-                  <div className='dashboard-table__column'>{column.value(row, idx)}</div>
+                  <div key={Math.random()} className='dashboard-table__column'>{column.value(row, idx)}</div>
                 )
               })}
             </div>
