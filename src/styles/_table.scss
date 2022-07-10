@@ -25,6 +25,7 @@
     margin: 0.5rem;
     display: flex;
     justify-content: flex-end;
+    word-break: break-all;
     align-items: center;
 
     &:nth-child(1),
@@ -33,6 +34,12 @@
       justify-content: flex-start;
     }
    
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6){ 
+      width: 50%;
+    }
+
     &:nth-child(3) {
       justify-content: flex-start;
       width: 90%;
