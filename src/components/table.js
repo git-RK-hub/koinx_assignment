@@ -1,14 +1,17 @@
 import React, {useCallback, useEffect, useState } from 'react';
 
 import { useAPI } from '../context/hook';
+import useWindowSize from '../utils/useWindowSize';
 import Paginate from './paginate';
+import Modal from './modal';
 
-const Table = ({desktopColumns, mobileColumns}) => {
+const Table = ({columns}) => {
   const { data } = useAPI();
+  const { isMobile} = useWindowSize();
   const [rowCount, setRowCount] = useState(10);
   const [rowsData, setRowsData] = useState([]);
-  
-  console.log(rowsData);
+  const [selectedRow, setSelectedRow] = useState({});
+
   const getRowsData = useCallback((startIdx, endIdx) => {
     setRowsData(data.slice(startIdx, endIdx));
   }, [data]);
@@ -33,8 +36,11 @@ const Table = ({desktopColumns, mobileColumns}) => {
       </div>
       <div className='dashboard-table__header'>
         <div className='dashboard-table__row'>
-          {desktopColumns.map((column, idx) => (
-            <div className='dashboard-table__column' key={idx}>
+          {columns.map((column, idx) => (
+            <div
+              key={idx}
+              className={`dashboard-table__column ${column.classes}`}
+            >
               <div className="row align-c justify-end">
                 {column.name}
                 {column.headerIcon && <img className="m-5" src={column.headerIcon} alt="down-arrow" />}
@@ -45,14 +51,20 @@ const Table = ({desktopColumns, mobileColumns}) => {
       </div>
       <div className='dashboard-table__body'>
         {rowsData.map((row, idx) => (
-          <div key={row.id} className="dashboard-table__row">
-            {desktopColumns.map((column) => (
-                <div key={Math.random()} className='dashboard-table__column'>{column.value(row, idx)}</div>
+          <div key={row.id} className="dashboard-table__row" onClick={() => setSelectedRow(row)}>
+            {columns.map((column) => (
+                <div
+                  key={Math.random()}
+                  className={`dashboard-table__column ${column.classes}`}
+                  >
+                    {column.value(row, idx)}
+                  </div>
               )
             )}
           </div>
         ))}
       </div>
+      {isMobile && <Modal data={selectedRow} />}
       <Paginate
         currentPage={1}
         dataLength={data.length}

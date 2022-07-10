@@ -3,13 +3,13 @@
   position: relative;
 
   &__header {
-    font-size: 11px;
+    font-size: 0.8rem;
     border-top: 0.1rem solid #eff2f5;
     font-weight: 700;
   }
 
   &__body {
-    font-size: 14px;
+    font-size: 0.8rem;
   }
 
   &__row-count {
@@ -42,25 +42,20 @@
     word-break: break-all;
     align-items: center;
 
-    &:nth-child(1),
-    &:nth-child(2){
+    &--xsmall {
       width: 10%;
-      justify-content: flex-start;
-    }
-   
-    &:nth-child(3) {
-      justify-content: flex-start;
-      width: 80%;
     }
 
-    &:nth-child(4),
-    &:nth-child(5),
-    &:nth-child(6){ 
-      width: 50%;
+    &--large {
+      width: 60%;
     }
 
-    &:nth-child(10) {
-      width: 10%;
+    &--small {
+      width: 25%;
+    }
+
+    &--medium {
+      width: 40%;
     }
   }
 

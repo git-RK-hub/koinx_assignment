@@ -6,12 +6,16 @@ import CaretDown from '../assets/images/caret-down.png';
 import DownArrow from '../assets/images/down-arrow.png';
 import Star from '../assets/images/star.png';
 import VerticalDots from '../assets/images/vertical-dots.png';
+import useWindowSize from '../utils/useWindowSize';
 import { inDollar, inPercentage } from '../utils/utility';
 
 const TableUi = () => {
+  const { isMobile, isTablet } = useWindowSize();
+
   const desktopTableColumn = useMemo(() => [
     {
       headerIcon: '',
+      classes: 'justify-start dashboard-table__column--xsmall',
       value: () => (
         <img src={Star} alt="star"/>
       )
@@ -19,6 +23,7 @@ const TableUi = () => {
     {
       name: '#',
       headerIcon: '',
+      classes: 'justify-start dashboard-table__column--xsmall',
       value: (_, idx) => (
         <div className='dead-text'>{idx+1}</div>
       )
@@ -26,6 +31,7 @@ const TableUi = () => {
     {
       name: 'NAME',
       headerIcon: '',
+      classes: 'justify-start dashboard-table__column--large',
       value: (row) => (
         row && (
           <>
@@ -39,6 +45,7 @@ const TableUi = () => {
     {
       name: 'PRICE',
       headerIcon: '',
+      classes: 'dashboard-table__column--medium',
       value: (row) => (
         row && inDollar(row.current_price)
       )
@@ -46,6 +53,7 @@ const TableUi = () => {
     {
       name: '24H',
       headerIcon: DownArrow,
+      classes: 'dashboard-table__column--small',
       value: (row) => (
         row && (
           <>
@@ -60,6 +68,7 @@ const TableUi = () => {
     {
       name: '7D',
       headerIcon: '',
+      classes: 'dashboard-table__column--small',
       value: (row) => (
         row && (
           <>
@@ -89,11 +98,12 @@ const TableUi = () => {
       name: 'CIRCULATING SUPPLY',
       headerIcon: '',
       value: (row) => (
-        row && row.circulating_supply
+        row && row.circulating_supply.toFixed(2)
       ),
     },
     {
       name: '',
+      classes: 'dashboard-table__column--xsmall',
       value: (row) => (
         row && <img src={VerticalDots} alt="vertical-dots"/>
       ),
@@ -103,8 +113,16 @@ const TableUi = () => {
   // columns to display on mobile view
   const mobileTableColumn = useMemo(() => [
     {
+      headerIcon: '',
+      classes: 'justify-start dashboard-table__column--xsmall',
+      value: () => (
+        <img src={Star} alt="star"/>
+      )
+    },
+    {
       name: 'NAME',
       headerIcon: '',
+      classes: 'justify-start dashboard-table__column--medium',
       value: (row) => (
         row && (
           <>
@@ -118,6 +136,7 @@ const TableUi = () => {
     {
       name: 'PRICE',
       headerIcon: '',
+      classes: 'justify-start dashboard-table__column--small',
       value: (row) => (
         row && inDollar(row.current_price)
       )
@@ -125,6 +144,7 @@ const TableUi = () => {
     {
       name: '24H',
       headerIcon: DownArrow,
+      classes: 'justify-start dashboard-table__column--small',
       value: (row) => (
         row && (
           <>
@@ -140,8 +160,7 @@ const TableUi = () => {
 
   return (
     <Table
-      desktopColumns={desktopTableColumn}
-      mobileColumns={mobileTableColumn}
+      columns={(isMobile || isTablet) ? mobileTableColumn : desktopTableColumn}
     />
   );
 }
