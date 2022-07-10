@@ -1,12 +1,5 @@
-.dashboard-carousel-inner {
-  display: flex;
-  transition: all 0.2s ease-in;
-}
-
 .dashboard-carousel {
   position: relative;
-  padding: 0 1rem;
-  overflow-x: hidden;
 
   &__item {
     flex: 0 0 100%;
@@ -62,4 +55,14 @@
       right: 0;
     }
   }
+}
+
+.dashboard-carousel-inner {
+  display: flex;
+  transition: all 0.2s ease-in;
+}
+
+.dashboard-carousel-slider {
+  padding: 0 1rem;
+  overflow-x: hidden;
 }

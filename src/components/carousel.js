@@ -34,8 +34,10 @@ const Carousel = ({ children }) => {
 
   return (
     <div className="dashboard-carousel">
-      <div className="dashboard-carousel-inner" style={{transform: `translate(-${transformX}%)`}}>
-        {children}
+      <div className='dashboard-carousel-slider'>
+        <div className="dashboard-carousel-inner" style={{transform: `translate(-${transformX}%)`}}>
+          {children}
+        </div>
       </div>
       <button
         className="dashboard-carousel__button dashboard-carousel__button--left"
