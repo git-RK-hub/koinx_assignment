@@ -1,0 +1,28 @@
+.dashboard-paginate {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem 0;
+
+  &__button {
+    margin: 0.2rem;
+    background: white;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    border: 0.1rem solid #DFE3E8;
+    cursor: pointer;
+    
+    &--disabled {
+      background-color: #919EAB;
+      pointer-events: none;
+    }
+
+    &--active {
+      border-color: #0052FE;
+      color: #0052FE;
+    }
+  }
+
+  &__button-nav {
+    color: #C4CDD5;
+  }
+}
