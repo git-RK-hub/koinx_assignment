@@ -1,16 +1,19 @@
 import React from 'react';
 
-import { APIContextProvider } from './context/provider';
+import Context from './context';
 import Dashboard from './ui/dashboard';
 import Layout from './Layout';
 
+
 const App = () => {
   return (
-    <APIContextProvider>
-      <Layout>
-        <Dashboard />
-      </Layout>
-    </APIContextProvider>
+    <Context.APIContextProvider>
+      <Context.ModalContextProvider>
+        <Layout>
+          <Dashboard />
+        </Layout>
+      </Context.ModalContextProvider>
+    </Context.APIContextProvider>
   )
 }
 
