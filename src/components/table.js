@@ -2,10 +2,12 @@ import React, {useCallback, useContext, useEffect, useState } from 'react';
 
 import { useAPI } from '../context/hook';
 import { ModalContext } from '../context/modal';
+import useWindowSize from '../utils/useWindowSize';
 import Paginate from './paginate';
 
 const Table = ({columns}) => {
   const { data } = useAPI();
+  const { isMobile } = useWindowSize();
   const { setIsModalOpen, setModalData } = useContext(ModalContext);
 
   const [rowCount, setRowCount] = useState(10);
@@ -20,8 +22,10 @@ const Table = ({columns}) => {
   }
   
   const handleRowClick = (row) => {
-    setIsModalOpen(true);
-    setModalData(row);
+    if(isMobile) {
+      setIsModalOpen(true);
+      setModalData(row);
+    }
   }
 
   useEffect(() => {
@@ -30,14 +34,14 @@ const Table = ({columns}) => {
   
   return (
     <div className='dashboard-table'>
-      <div className='dashboard-table__row-count row align-c justify-end'>
+      {!isMobile && <div className='dashboard-table__row-count row align-c justify-end'>
         <span className="m-5 dead-text small-font-size">show rows</span>
         <select value={rowCount} onChange={changeRowCount}>
           <option value={10}>10</option>
           <option value={50}>50</option>
           <option value={100}>100</option>
         </select>
-      </div>
+      </div>}
       <div className='dashboard-table__header'>
         <div className='dashboard-table__row'>
           {columns.map((column, idx) => (

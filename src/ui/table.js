@@ -1,4 +1,4 @@
-import React, { useMemo} from 'react';
+import React, { useEffect, useMemo, useState} from 'react';
 
 import Table from '../components/table';
 import CaretUp from '../assets/images/caret-up.png';
@@ -110,6 +110,76 @@ const TableUi = () => {
     },
   ], []);
   
+  // columns to display on tablet view
+  const tabletTableColumn = useMemo(() => [
+    {
+      headerIcon: '',
+      classes: 'justify-start dashboard-table__column--xsmall',
+      value: () => (
+        <img src={Star} alt="star"/>
+      )
+    },
+    {
+      name: '#',
+      headerIcon: '',
+      classes: 'justify-start dashboard-table__column--xsmall',
+      value: (_, idx) => (
+        <div className='dead-text'>{idx+1}</div>
+      )
+    },
+    {
+      name: 'NAME',
+      headerIcon: '',
+      classes: 'justify-start dashboard-table__column--large',
+      value: (row) => (
+        row && (
+          <>
+            <img className="dashboard-table__column-image" src={row.image} alt={row.symbol} />
+            <div className="m-5">{row.name}</div>
+            <div className="dead-text all-caps">{row.symbol}</div>
+          </>
+        )
+      ),
+    },
+    {
+      name: 'PRICE',
+      headerIcon: '',
+      classes: 'dashboard-table__column--medium',
+      value: (row) => (
+        row && inDollar(row.current_price)
+      )
+    },
+    {
+      name: '24H',
+      headerIcon: DownArrow,
+      classes: 'dashboard-table__column--small',
+      value: (row) => (
+        row && (
+          <>
+            <img className="m-5" src={row.ath_change_percentage > 0 ? CaretUp : CaretDown} alt="icon"/>
+            <div className={`bold ${row.ath_change_percentage > 0 ? 'success' : 'danger'}`}>
+              {inPercentage(row.ath_change_percentage)}
+            </div>
+          </>
+        )
+      ),
+    },
+    {
+      name: '7D',
+      headerIcon: '',
+      classes: 'dashboard-table__column--small',
+      value: (row) => (
+        row && (
+          <>
+            <img className="m-5" src={row.ath_change_percentage > 0 ? CaretUp : CaretDown} alt="icon"/>
+            <div className={`bold ${row.ath_change_percentage > 0 ? 'success' : 'danger'}`}>
+              {inPercentage(row.ath_change_percentage)}
+            </div>
+          </>
+        )
+      ),
+    },
+  ], [])
   // columns to display on mobile view
   const mobileTableColumn = useMemo(() => [
     {
@@ -157,11 +227,20 @@ const TableUi = () => {
       ),
     },
   ], []);
+  const [columns, setColumns] = useState(desktopTableColumn);
 
+  useEffect(() => {
+    if(isMobile) {
+      setColumns(mobileTableColumn);
+    } else if(isTablet) {
+      setColumns(tabletTableColumn);
+    } else {
+      setColumns(desktopTableColumn);
+    }
+  }, [desktopTableColumn, isMobile, isTablet, mobileTableColumn, tabletTableColumn])
+ 
   return (
-    <Table
-      columns={(isMobile || isTablet) ? mobileTableColumn : desktopTableColumn}
-    />
+    <Table columns={columns} />
   );
 }
  
