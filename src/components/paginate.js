@@ -35,6 +35,7 @@ const Paginate = ({dataLength, rowsPerPage, onPageChange, currentPage}) => {
         </button>
         {Array(numberOfPages).fill(1).map((_, idx) => (
           <button
+            key={`dashboard-paginate-btn-${idx}`}
             className={
               idx+1 === currentActivePage
               ? "dashboard-paginate__button dashboard-paginate__button--active"
