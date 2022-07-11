@@ -24,7 +24,7 @@ const ModalUi = () => {
           <p className="m-v-5">24H</p>
           <div className="row align-c">
             <img className="m-5" src={modalData.ath_change_percentage > 0 ? CaretUp : CaretDown} alt="icon"/>
-            <span className={`bold ${modalData.ath_change_percentage > 0 ? 'success' : 'danger'}`}>
+            <span className={`bold ${modalData.ath_change_percentage > 0  ? 'success' : 'danger'}`}>
               {inPercentage(modalData.ath_change_percentage)}
             </span> 
           </div>
@@ -49,7 +49,7 @@ const ModalUi = () => {
       </div>
       <div className="m-v-10">
         <p className="m-v-5">CIRCULATING SUPPLY</p>
-        <span>{modalData.circulating_supply.toFixed(2)}</span>
+        <span>{modalData.circulating_supply?.toFixed(2)}</span>
       </div>
     </Modal>
   );

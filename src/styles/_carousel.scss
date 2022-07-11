@@ -55,14 +55,26 @@
       right: 0;
     }
   }
-}
 
-.dashboard-carousel-inner {
-  display: flex;
-  transition: all 0.2s ease-in;
-}
+  &__inner {
+    display: flex;
+    transition: all 0.2s ease-in;
+  }
+  
+  &__slider {
+    padding: 0 1rem;
+    overflow-x: hidden;
+  }
 
-.dashboard-carousel-slider {
-  padding: 0 1rem;
-  overflow-x: hidden;
+  &__dots {
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 50%;
+    border: 1px solid #94B5FC;
+    margin: 0.1rem; 
+
+    &--active {
+      background: #0052FE;
+    }
+  }
 }
