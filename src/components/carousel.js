@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useWindowSize from '../utils/useWindowSize';
 
 const Carousel = ({ children }) => {
@@ -7,7 +7,7 @@ const Carousel = ({ children }) => {
   const { isMobile, isTablet } = useWindowSize();
   const [childrenOnDisplay, setChildrenOnDisplay] = useState(3);
   
-  const updateIndex = (newIndex) => {
+  const updateIndex = useCallback((newIndex) => {
     if (newIndex < 0) {
       newIndex = 0;
     } else if (newIndex >= React.Children.count(children)) {
@@ -17,7 +17,7 @@ const Carousel = ({ children }) => {
     }
 
     setActiveIndex(newIndex);
-  };
+  }, [children, childrenCount, childrenOnDisplay]);
 
   console.log(activeIndex);
   useEffect(() => {
@@ -31,7 +31,7 @@ const Carousel = ({ children }) => {
         updateIndex(0)
       }
     }
-  }, [isMobile, isTablet]);
+  }, [activeIndex, childrenOnDisplay, isMobile, isTablet, updateIndex]);
 
   return (
     <div className="dashboard-carousel" >
