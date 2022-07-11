@@ -1,11 +1,12 @@
 .dashboard-carousel {
   position: relative;
+  overflow: hidden;
 
   &__item {
     flex: 0 0 100%;
     display: grid;
     gap: 0.1rem;
-    margin: 1rem 4rem 1rem 0;
+    margin: 1rem 0.3rem;
     background-color: white;
     box-shadow: 0 0 1rem 0.5rem rgb(208 214 227 / 30%);
     border-radius: 0.5rem;
@@ -59,13 +60,14 @@
   &__inner {
     display: flex;
     transition: all 0.2s ease-in;
+    width: 80%;
+
+    @media screen and (max-width: 480px) {
+      margin-left: 3rem;
+      
+    }
   }
   
-  &__slider {
-    padding: 0 1rem;
-    overflow-x: hidden;
-  }
-
   &__dots {
     width: 0.3rem;
     height: 0.3rem;
